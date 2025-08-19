@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ALI CSC CENTER — 200+ Services</title>
+
+  <!-- Google Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    :root{
+      --primary:#0077b6; --primary-2:#0096c7; --dark:#1f2937; --muted:#6b7280;
+      --bg:#f5f7fb; --card:#ffffff; --accent:#f1faff; --shadow:0 10px 30px rgba(0,0,0,.08);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:'Poppins',sans-serif;background:var(--bg);color:var(--dark)}
+    a{text-decoration:none;color:inherit}
+
+    /* Topbar */
+    .topbar{background:var(--dark);color:#fff;font-size:14px;padding:8px 16px;text-align:center}
+    .topbar span{opacity:.9}
+
+    /* Navbar */
+    .nav{position:sticky;top:0;z-index:1000;background:#0f172a;color:#fff;box-shadow:var(--shadow)}
+    .nav-inner{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:14px 18px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{width:42px;height:42px;border-radius:50%;background:#fff;object-fit:contain}
+    .brand h1{font-size:20px;margin:0;font-weight:700;letter-spacing:.3px}
+    .menu a{color:#e5e7eb;margin:0 12px;font-weight:600}
+    .menu a:hover{color:#fff}
+
+    /* Hero */
+    .hero{position:relative;min-height:58vh;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;filter:brightness(.45)}
+    .hero-inner{position:relative;z-index:1;max-width:1000px;padding:60px 16px}
+    .hero h2{font-size:44px;margin:0 0 10px}
+    .hero p{font-size:18px;opacity:.95;margin:0 0 18px}
+    .hero .cta{display:inline-flex;gap:10px;flex-wrap:wrap;justify-content:center}
+    .btn{background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;padding:12px 20px;border-radius:10px;font-weight:700;box-shadow:var(--shadow)}
+    .btn.alt{background:#25d366}
+    .btn:hover{transform:translateY(-2px)}
+    .strip{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+    .chip{background:rgba(255,255,255,.15);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.25);padding:8px 12px;border-radius:999px;font-size:14px}
+
+    /* Section shell */
+    section{max-width:1200px;margin:26px auto;padding:0 16px}
+    .card{background:var(--card);border-radius:16px;box-shadow:var(--shadow)}
+
+    /* About */
+    #about .card{padding:28px}
+    #about h3{margin:0 0 8px;color:var(--primary)}
+    #about p{margin:0;color:var(--muted);font-size:16px}
+
+    /* Services header tools */
+    .tools{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:18px}
+    .filters{display:flex;gap:10px;flex-wrap:wrap}
+    .select, .search{background:#f3f6ff;border:1px solid #eef2ff;border-radius:10px;padding:10px 12px;min-width:220px}
+    .search{flex:1;display:flex;align-items:center;gap:10px}
+    .search input{border:none;background:transparent;outline:none;width:100%}
+
+    /* Category blocks */
+    .category{margin:18px 0}
+    .category-header{display:flex;align-items:center;gap:10px;padding:16px 18px}
+    .category-header h4{margin:0;font-size:20px}
+    .category-header .count{margin-left:auto;color:var(--muted);font-size:14px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;padding:0 18px 18px}
+    .svc{background:var(--accent);border:1px solid #e6f4ff;border-radius:14px;padding:14px;display:flex;gap:10px;align-items:flex-start;transition:.25s}
+    .svc i{font-size:20px;color:var(--primary);margin-top:2px}
+    .svc:hover{transform:translateY(-4px);box-shadow:var(--shadow);background:#fff}
+
+    /* Testimonials */
+    #reviews .card{padding:24px}
+    .twrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+    .t{background:#ffffff;border:1px solid #eef2ff;border-radius:14px;padding:16px}
+    .t .stars{color:#f59e0b}
+    .t .name{color:var(--primary);font-weight:700;margin-top:6px}
+
+    /* Quick Contact */
+    #quick .card{padding:26px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+    #quick h3{margin:0}
+    #quick .btn{min-width:160px;text-align:center}
+
+    /* Contact */
+    #contact .card{padding:26px}
+    .form{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+    .input{display:flex;flex-direction:column;gap:6px}
+    .input input,.input textarea{padding:12px;border-radius:10px;border:1px solid #e5e7eb;background:#f9fafb}
+    .input textarea{min-height:120px;resize:vertical}
+    .map{margin-top:14px;border-radius:14px;overflow:hidden;border:1px solid #e5e7eb}
+
+    /* Footer */
+    .footer{background:#0b1020;color:#cbd5e1;margin-top:28px}
+    .footer-inner{max-width:1200px;margin:auto;padding:20px 16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+    .social a{color:#e5e7eb;margin:0 8px;font-size:20px}
+    .social a:hover{color:#fff}
+  </style>
+</head>
+<body>
+
+  <!-- Topbar -->
+  <div class="topbar">
+    <span>📍 Nearby Petrol Pump, Karanpur to Dilari Road, Salarpur Adalpur, Thakurdwara, Moradabad (U.P.) 244401 &nbsp;|&nbsp; ⏰ 08:00 AM – 07:00 PM (Mon–Sat) &nbsp;|&nbsp; 📞 9368766500 / 9068945782</span>
+  </div>
+
+  <!-- Navbar -->
+  <div class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <img src="https://via.placeholder.com/90x90.png?text=Logo" alt="ALI CSC Logo">
+        <h1>ALI CSC CENTER</h1>
+      </div>
+      <div class="menu">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#quick">Quick Contact</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <h2>All Government & Digital Services Under One Roof</h2>
+      <p>e-District • Aadhaar • PAN • Passport • GST & Tax • Banking • Tickets • Certificates • Insurance • Education • Utilities — and 200+ more</p>
+      <div class="cta">
+        <a class="btn" href="tel:+919368766500"><i class="fa-solid fa-phone"></i>&nbsp; Call Now</a>
+        <a class="btn alt" target="_blank" href="https://wa.me/919368766500"><i class="fa-brands fa-whatsapp"></i>&nbsp; WhatsApp</a>
+      </div>
+      <div class="strip">
+        <span class="chip"><i class="fa-solid fa-shield-check"></i> Trusted CSC</span>
+        <span class="chip"><i class="fa-solid fa-bolt"></i> Fast Processing</span>
+        <span class="chip"><i class="fa-solid fa-indian-rupee-sign"></i> Transparent Charges</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="card">
+      <h3>About Us</h3>
+      <p><strong>ALI CSC CENTER</strong> is a trusted, authorized Common Service Center delivering 200+ citizen services —
+        Aadhaar, PAN, Passport, GST, e-District certificates, Banking, Education, Travel, Insurance, Health and more —
+        with speed, accuracy and transparency. Our goal is to make essential government and digital services simple,
+        reliable and accessible for everyone in our locality.</p>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="card">
+      <div class="tools">
+        <div class="filters">
+          <select id="categoryFilter" class="select">
+            <option value="all">All Categories</option>
+          </select>
+          <div class="search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input id="searchBox" type="text" placeholder="Search service (e.g., Aadhaar update, PAN, ticket)"/>
+          </div>
+        </div>
+        <div>
+          <span id="totalCount" class="chip" style="background:#eef6ff;color:#0b3b70;border:1px solid #cfe3ff;">0 services</span>
+        </div>
+      </div>
+
+      <!-- Services container gets auto-rendered here -->
+      <div id="servicesContainer"></div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section id="reviews">
+    <div class="card">
+      <h3 style="padding:0 4px 10px 4px;">Customer Reviews</h3>
+      <div class="twrap">
+        <div class="t">
+          <div class="stars">★★★★★</div>
+          Super quick Aadhaar update and very polite staff. Highly recommended!
+          <div class="name">— Ramesh Kumar</div>
+        </div>
+        <div class="t">
+          <div class="stars">★★★★☆</div>
+          Got my PAN correction and e-PAN within the same day. Smooth experience.
+          <div class="name">— Suman Sharma</div>
+        </div>
+        <div class="t">
+          <div class="stars">★★★★★</div>
+          Best CSC in the area. They even booked my train tickets hassle-free.
+          <div class="name">— Anil Verma</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Contact -->
+  <section id="quick">
+    <div class="card">
+      <h3>📞 Quick Contact</h3>
+      <div>
+        <a class="btn" href="tel:+919368766500"><i class="fa-solid fa-phone"></i>&nbsp; Call Now</a>
+        <a class="btn alt" target="_blank" href="https://wa.me/919368766500"><i class="fa-brands fa-whatsapp"></i>&nbsp; WhatsApp Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="card">
+      <h3 style="margin:0 0 8px 0">Contact Us</h3>
+      <div class="form">
+        <div class="input">
+          <label>Name</label>
+          <input placeholder="Your name">
+        </div>
+        <div class="input">
+          <label>Phone</label>
+          <input placeholder="+91 XXXXX-XXXXX">
+        </div>
+        <div class="input" style="grid-column:1/-1">
+          <label>Message</label>
+          <textarea placeholder="How can we help you?"></textarea>
+        </div>
+        <div style="grid-column:1/-1">
+          <button class="btn"><i class="fa-solid fa-paper-plane"></i>&nbsp; Submit</button>
+        </div>
+      </div>
+      <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.4378052685806!2d78.7983!3d29.1713"
+          width="100%" height="350" style="border:0" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+      <div style="margin-top:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+        <a class="btn alt" target="_blank" href="https://www.instagram.com/alicsccenter?igsh=MTBnaDNoOHdnN3hkOA=="><i class="fa-brands fa-instagram"></i>&nbsp; Instagram</a>
+        <a class="btn" href="mailto:parvezmaliksa786@gmail.com"><i class="fa-solid fa-envelope"></i>&nbsp; Email</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-inner">
+      <div>© 2025 ALI CSC CENTER • Designed with ❤️</div>
+      <div class="social">
+        <a target="_blank" href="https://www.instagram.com/alicsccenter?igsh=MTBnaDNoOHdnN3hkOA=="><i class="fab fa-instagram"></i></a>
+        <a target="_blank" href="https://wa.me/919368766500"><i class="fab fa-whatsapp"></i></a>
+        <a href="mailto:parvezmaliksa786@gmail.com"><i class="fas fa-envelope"></i></a>
+        <a target="_blank" href="https://facebook.com/"><i class="fab fa-facebook"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // --- Icon helper based on keywords ---
+    function iconFor(name){
+      const n = name.toLowerCase();
+      if(n.includes('aadhaar')) return 'fa-id-card';
+      if(n.includes('pan')) return 'fa-address-card';
+      if(n.includes('passport')) return 'fa-passport';
+      if(n.includes('gst')||n.includes('tax')) return 'fa-file-invoice-dollar';
+      if(n.includes('certificate')) return 'fa-certificate';
+      if(n.includes('ticket')||n.includes('train')||n.includes('bus')||n.includes('flight')) return 'fa-ticket';
+      if(n.includes('bank')||n.includes('aeps')||n.includes('account')||n.includes('loan')) return 'fa-building-columns';
+      if(n.includes('insurance')||n.includes('pension')) return 'fa-shield';
+      if(n.includes('recharge')||n.includes('bill')||n.includes('fastag')||n.includes('electricity')||n.includes('water')||n.includes('gas')) return 'fa-bolt';
+      if(n.includes('education')||n.includes('admission')||n.includes('exam')||n.includes('scholar')) return 'fa-graduation-cap';
+      if(n.includes('health')||n.includes('ayushman')||n.includes('abha')) return 'fa-heart-pulse';
+      if(n.includes('e-district')||n.includes('jan seva')||n.includes('bhulekh')) return 'fa-globe';
+      if(n.includes('print')||n.includes('scan')||n.includes('lamination')||n.includes('photo')) return 'fa-print';
+      if(n.includes('yojana')||n.includes('scheme')) return 'fa-hands-holding-circle';
+      if(n.includes('notary')||n.includes('affidavit')) return 'fa-scale-balanced';
+      return 'fa-circle-check';
+    }
+
+    // --- 200+ Services Data (11 categories x ~20 each) ---
+    const servicesData = {
+      "Aadhaar Services": [
+        "Aadhaar Enrollment (New)",
+        "Aadhaar Update – Address",
+        "Aadhaar Update – Mobile",
+        "Aadhaar Update – DOB/Name/Gender",
+        "Aadhaar PVC Order",
+        "e-Aadhaar Download",
+        "Masked Aadhaar",
+        "Aadhaar Status Check",
+        "Aadhaar Seeding – Bank",
+        "Aadhaar Seeding – PAN",
+        "Aadhaar Seeding – Mobile",
+        "VID Generate / Retrieve",
+        "Aadhaar Authentication History",
+        "Aadhaar Address Validation Letter",
+        "Aadhaar Color Print & Lamination",
+        "Child Aadhaar (0-5)",
+        "Aadhaar Update Appointment Booking",
+        "Aadhaar Email Update",
+        "Aadhaar Biometric Update (info)",
+        "Aadhaar Lost/Found Guidance"
+      ],
+      "PAN & Passport": [
+        "New PAN Card (NSDL/UTIITSL)",
+        "PAN Correction / Reprint",
+        "e-PAN Download",
+        "Link PAN with Aadhaar",
+        "Track PAN Application",
+        "Passport New Application",
+        "Passport Renewal",
+        "Passport Re-issue (Lost/Damage)",
+        "Police Verification Slot Booking",
+        "Passport Fee Payment",
+        "Photo & Signature Upload Help",
+        "Document Scanning for Passport",
+        "Tatkal Passport Guidance",
+        "Passport Appointment Reschedule",
+        "International Travel Insurance",
+        "Passport Status Tracking",
+        "Name/DOB Correction in PAN",
+        "PAN to Bank Linking",
+        "PAN Address Update",
+        "NRI PAN Assistance"
+      ],
+      "Banking & Finance": [
+        "Savings Account Opening",
+        "Current Account Opening",
+        "AEPS Cash Withdrawal",
+        "AEPS Balance Enquiry",
+        "Mini Statement",
+        "Domestic Money Transfer (DMT)",
+        "IMPS/NEFT Assistance",
+        "Cash Deposit (Partner Bank)",
+        "PM Jan Dhan Account Help",
+        "RuPay Debit Card Apply",
+        "Credit Card Apply (Partner)",
+        "Fixed Deposit (FD) Booking",
+        "Recurring Deposit (RD) Booking",
+        "Atal Pension Yojana (APY) Enroll",
+        "Pradhan Mantri Suraksha Bima Yojana (PMSBY)",
+        "Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY)",
+        "Gold Loan Application (NBFC Partners)",
+        "Personal/Vehicle Loan File",
+        "NPS (National Pension System) Registration",
+        "Account KYC/Video-KYC Support"
+      ],
+      "e-District Certificates": [
+        "Income Certificate",
+        "Caste Certificate",
+        "Domicile/Residence Certificate",
+        "Birth Certificate",
+        "Death Certificate",
+        "Marriage Registration Certificate",
+        "Disability Certificate",
+        "Character Certificate",
+        "Solvency Certificate",
+        "Agriculture Income Certificate",
+        "Family ID / Parivar Register Copy",
+        "Old Age Pension Application",
+        "Widow Pension Application",
+        "Divyang Pension Application",
+        "Lal Dora / Land Related Extract",
+        "E-Stamp & Stamp Duty Payment",
+        "Notary & Affidavit Drafting",
+        "Court Fee e-Payment",
+        "RTI Application Filing",
+        "Certified Copy Request"
+      ],
+      "Education & Exams": [
+        "Scholarship Registration (NSP/State)",
+        "Pre-Matric/Post-Matric Scholarship Renewal",
+        "Admission Forms (School/College)",
+        "IGNOU/NIOS Admission & Exam Forms",
+        "CUET/NEET/JEE Registration Support",
+        "UP Scholarship Portal Services",
+        "SLC/TC Application Assistance",
+        "Result Download & Print",
+        "Admit Card Download",
+        "Fee Payment (Online Portals)",
+        "DigiLocker Setup & Document Fetch",
+        "NIELIT/CCC Form Filling",
+        "IELTS/TOEFL Booking Help",
+        "Certificate Attestation Guidance",
+        "Entrance Coaching Registration",
+        "Education Loan Application",
+        "Bonafide Certificate Apply",
+        "Migration Certificate Apply",
+        "Marksheet Verification",
+        "Career/Apprenticeship Portal Registration"
+      ],
+      "Travel & Ticketing": [
+        "IRCTC Registration",
+        "Train Ticket Booking",
+        "Tatkal Ticket Booking",
+        "PNR Status & Seat Availability",
+        "Bus Ticket Booking",
+        "Flight Ticket Booking",
+        "Tour Packages (Domestic)",
+        "Hotel Booking",
+        "Travel Insurance",
+        "Visa Form Filling (Basic)",
+        "International SIM Guidance",
+        "Passport Photo Service",
+        "Railway Concession Form Help",
+        "Refund Claim Assistance",
+        "Itinerary Print & Email",
+        "Cab Booking (Partner)",
+        "Vehicle Fastag Purchase",
+        "Fastag Recharge",
+        "Metro Card Top-up (where available)",
+        "Holiday Planning Support"
+      ],
+      "Insurance & Pension": [
+        "Health Insurance (Retail/Group Partners)",
+        "Life/Term Insurance",
+        "Motor/Two-Wheeler Insurance",
+        "Travel Insurance",
+        "Crop Insurance (PMFBY) Assistance",
+        "Property/Shop Insurance",
+        "Renewals & Endorsements",
+        "Claim Intimation Support",
+        "e-Policy Download & Print",
+        "e-Mandate Setup",
+        "Atal Pension Yojana Enrollment",
+        "NPS Tier-I / Tier-II Services",
+        "Pension Life Certificate (Jeevan Pramaan) Facilitation",
+        "PPO/Bank Linking Assistance",
+        "Pradhan Mantri Fasal Bima Yojana",
+        "ULIP/Investment Policy Purchase (Partners)",
+        "Nominee Update Help",
+        "Policy Portability Guidance",
+        "Accidental Insurance (PMSBY)",
+        "PMJJBY Enrollment"
+      ],
+      "Utility & Recharge": [
+        "Electricity Bill Payment",
+        "Water Bill Payment",
+        "Gas Cylinder Booking",
+        "Piped Gas Bill",
+        "Mobile Prepaid Recharge",
+        "Mobile Postpaid Bill",
+        "DTH Recharge",
+        "Broadband/FTTH Bill",
+        "Landline Bill",
+        "Municipal Tax Payment",
+        "Traffic Challan Payment",
+        "Fastag Recharge",
+        "Insurance Premium Payment",
+        "Loan EMI Payment",
+        "Wallet Top-up",
+        "OTT Subscriptions (Assisted)",
+        "Cowin Certificate Download",
+        "ABHA ID Linking (utility)",
+        "UMANG/DigiLocker Account Help",
+        "Aadhaar Pay (where enabled)"
+      ],
+      "Health & Social": [
+        "Ayushman Bharat (PM-JAY) Card Apply",
+        "ABHA Health ID Create",
+        "Covid Vaccination Certificate Download",
+        "Birth/Death Health Records Print",
+        "ESI/EPFO Registration Assistance",
+        "e-Shram Card Registration",
+        "Labor (BOCW) Registration",
+        "Ration Card New/Update",
+        "Food Subsidy Scheme Apply",
+        "Janani Suraksha Yojana Apply",
+        "Maternity Benefit Form Help",
+        "Disability Pension Assist",
+        "Senior Citizen Card Apply",
+        "Blood Donor Registration",
+        "Health Insurance Claim Help",
+        "Doctor Appointment Booking (Assisted)",
+        "Tele-consultation Setup",
+        "Medical Certificate Guidance",
+        "Ambulance Helpline Connect",
+        "Health Camp Registration"
+      ],
+      "Government Schemes": [
+        "PM Kisan Registration/Update",
+        "PM Awas Yojana Apply",
+        "Ujjwala Yojana Connection",
+        "Atal Pension Yojana",
+        "Kisan Credit Card (KCC) Apply",
+        "FSSAI Registration (Basic)",
+        "MSME/Udyam Registration",
+        "Shop & Establishment Registration",
+        "GST Registration & Returns (Basic)",
+        "ITR Filing (Individual/Proprietor)",
+        "e-Way Bill Basic Assistance",
+        "National Voter Services (NVSP)",
+        "Voter ID New/Correction",
+        "Driving License Apply/Renewal",
+        "Vehicle RC Services (Print/Update)",
+        "PSARA/Trade License Guidance",
+        "Labharthi List Check",
+        "E-Shram/EPFO/ESIC Services",
+        "Farmer Portal Services",
+        "Village/Tehsil Level Grievance Filing"
+      ],
+      "Digital & Office": [
+        "Photo Print (Passport/Stamp/Custom)",
+        "Instant Photo Studio & Background Edit",
+        "Document Scanning & PDF Merge",
+        "Color Print & Photocopy",
+        "Lamination (ID/A4/Legal)",
+        "Resume/CV Design",
+        "Cover Letter & SOP Draft",
+        "Email ID Creation & Setup",
+        "DigiLocker Linking & Download",
+        "Digital Signature (DSC) Facilitation",
+        "Notary & Affidavit Draft (Assisted)",
+        "Court Fee & e-Stamp Assist",
+        "Online Applications (All Portals)",
+        "Form Filling & Upload",
+        "Data Entry Projects (Local)",
+        "Cyber Café Services",
+        "Website/Application Form Help",
+        "QR Code Payments (Setup)",
+        "Payment Receipt Print",
+        "Bulk Print/Scan Jobs"
+      ]
+    };
+
+    // --- Render logic ---
+    const servicesContainer = document.getElementById('servicesContainer');
+    const categoryFilter = document.getElementById('categoryFilter');
+    const searchBox = document.getElementById('searchBox');
+    const totalCount = document.getElementById('totalCount');
+
+    // populate filter
+    Object.keys(servicesData).forEach(cat=>{
+      const opt = document.createElement('option');
+      opt.value = cat; opt.textContent = cat;
+      categoryFilter.appendChild(opt);
+    });
+
+    function render(){
+      const q = (searchBox.value||'').toLowerCase().trim();
+      const sel = categoryFilter.value;
+      servicesContainer.innerHTML = '';
+      let globalCount = 0;
+
+      const cats = sel==='all' ? Object.keys(servicesData) : [sel];
+      cats.forEach(cat=>{
+        const items = servicesData[cat].filter(s => !q || s.toLowerCase().includes(q));
+        globalCount += items.length;
+
+        const block = document.createElement('div');
+        block.className = 'category';
+        block.innerHTML = `
+          <div class="category-header">
+            <i class="fa-solid ${iconFor(cat)}" style="color:#0077b6"></i>
+            <h4>${cat}</h4>
+            <span class="count">${items.length} items</span>
+          </div>
+          <div class="grid"></div>
+        `;
+        const grid = block.querySelector('.grid');
+
+        items.forEach(txt=>{
+          const div = document.createElement('div');
+          div.className = 'svc';
+          div.innerHTML = `<i class="fa-solid ${iconFor(txt)}"></i><div>${txt}</div>`;
+          grid.appendChild(div);
+        });
+
+        servicesContainer.appendChild(block);
+      });
+
+      totalCount.textContent = `${globalCount} services`;
+    }
+
+    searchBox.addEventListener('input', render);
+    categoryFilter.addEventListener('change', render);
+    render(); // initial
+
+  </script>
+</body>
+</html>
